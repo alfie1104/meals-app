@@ -26,7 +26,17 @@ export default function App() {
               title: "All Categories",
             }}
           />
-          <Stack.Screen name="MealsOverview" component={MealsOverViewScreen} />
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverViewScreen}
+            // options={({ route, navigation }) => {
+            //   const catId = route.params.categoryId;
+
+            //   return {
+            //     title: catId,
+            //   };
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

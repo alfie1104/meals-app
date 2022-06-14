@@ -1,8 +1,9 @@
+import { useLayoutEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import MealItem from "../components/MealItem";
-import { MEALS } from "../data/dummy-data";
+import { MEALS, CATEGORIES } from "../data/dummy-data";
 
-function MealsOverViewScreen({ route }) {
+function MealsOverViewScreen({ route, navigation }) {
   /*
     If the component is not the direct children of Stack.Screen and the component is nested component,
     then we can use useRoute as an alternative way of using route parameter
@@ -12,6 +13,16 @@ function MealsOverViewScreen({ route }) {
   const displayedMeals = MEALS.filter((mealItem) => {
     return mealItem.categoryIds.indexOf(catId) >= 0;
   });
+
+  useLayoutEffect(() => {
+    const categoryTitle = CATEGORIES.find(
+      (category) => category.id === catId
+    ).title;
+
+    navigation.setOptions({
+      title: categoryTitle,
+    });
+  }, []);
 
   function renderMealItem(itemData) {
     const item = itemData.item;
